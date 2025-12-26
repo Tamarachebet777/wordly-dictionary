@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordly - Interactive Dictionary</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Roboto+Slab:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <header>
+            <div class="header-content">
+                <h1><i class="fas fa-book-open"></i> Wordly Dictionary</h1>
+                <p class="subtitle">Your interactive language learning companion</p>
+            </div>
+            
+            <!-- Theme Toggle -->
+            <div class="theme-toggle">
+                <button id="themeToggle" aria-label="Toggle dark/light mode">
+                    <i class="fas fa-moon"></i> Dark Mode
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main>
+            <!-- Search Section -->
+            <section class="search-section">
+                <div class="search-container">
+                    <h2>Discover Word Definitions</h2>
+                    <p class="search-description">Search for any English word to get its definition, pronunciation, synonyms, and more.</p>
+                    
+                    <form id="searchForm" aria-label="Word search form">
+                        <div class="input-group">
+                            <input 
+                                type="text" 
+                                id="wordInput" 
+                                placeholder="Enter a word (e.g., 'hello', 'knowledge', 'serendipity')" 
+                                aria-label="Word to search"
+                                required
+                            >
+                            <button type="submit" id="searchBtn" aria-label="Search word">
+                                <i class="fas fa-search"></i> Search
+                            </button>
+                        </div>
+                        <div class="search-hints">
+                            <p><i class="fas fa-lightbulb"></i> Try searching for: <span class="hint-examples">innovation, eloquent, perseverance</span></p>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="resultsSection">
+                <div class="results-container">
+                    <h2 id="resultsHeading">Word Details</h2>
+                    <div class="results-placeholder" id="resultsPlaceholder">
+                        <div class="placeholder-content">
+                            <i class="fas fa-search"></i>
+                            <h3>Search for a word to see its definition here</h3>
+                            <p>Enter a word in the search box above and click "Search" to get detailed information including pronunciation, definitions, synonyms, and examples.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Word Details (dynamically populated) -->
+                    <div class="word-details" id="wordDetails" style="display: none;">
+                        <!-- Word header with pronunciation and audio -->
+                        <div class="word-header">
+                            <div class="word-title">
+                                <h2 id="searchedWord">Word</h2>
+                                <div class="word-meta">
+                                    <span id="wordPhonetic" class="phonetic">/ˈwɜːd/</span>
+                                    <span id="wordPartOfSpeech" class="part-of-speech">noun</span>
+                                </div>
+                            </div>
+                            <div class="word-actions">
+                                <button id="playAudioBtn" class="audio-btn" aria-label="Play pronunciation">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button id="saveWordBtn" class="save-btn" aria-label="Save word to favorites">
+                                    <i class="far fa-star"></i> Save
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Audio element (hidden) -->
+                        <audio id="wordAudio" preload="none"></audio>
+                        
+                        <!-- Definitions -->
+                        <div class="definitions-container">
+                            <h3><i class="fas fa-list-ul"></i> Definitions</h3>
+                            <div id="definitionsList" class="definitions-list">
+                                <!-- Definitions will be added here dynamically -->
+                            </div>
+                        </div>
+                        
+                        <!-- Synonyms -->
+                        <div class="synonyms-container">
+                            <h3><i class="fas fa-sync-alt"></i> Synonyms</h3>
+                            <div id="synonymsList" class="synonyms-list">
+                                <!-- Synonyms will be added here dynamically -->
+                            </div>
+                        </div>
+                        
+                        <!-- Source Info -->
+                        <div class="source-container">
+                            <h3><i class="fas fa-info-circle"></i> Source Information</h3>
+                            <div id="sourceInfo" class="source-info">
+                                <!-- Source info will be added here dynamically -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Error Message (hidden by default) -->
+                    <div class="error-message" id="errorMessage" style="display: none;">
+                        <div class="error-content">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <h3>Word Not Found</h3>
+                            <p id="errorText">Sorry, we couldn't find the word you searched for. Please check the spelling and try again.</p>
+                            <button id="dismissError" class="dismiss-btn">Dismiss</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Saved Words Section -->
+            <section class="saved-section" id="savedSection">
+                <div class="saved-container">
+                    <h2><i class="fas fa-star"></i> Saved Words</h2>
+                    <div class="saved-words" id="savedWords">
+                        <p class="empty-saved" id="emptySaved">No saved words yet. Click the "Save" button on any word to add it here.</p>
+                        <!-- Saved words will be added here dynamically -->
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer>
+            <div class="footer-content">
+                <p>Wordly Dictionary &copy; 2023 | Language Learning Platform</p>
+                <p class="api-attribution">Powered by <a href="https://dictionaryapi.dev/" target="_blank" rel="noopener">Free Dictionary API</a></p>
+                <p class="instructions"><i class="fas fa-info-circle"></i> This interactive dictionary allows you to search for word definitions, pronunciations, and synonyms.</p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

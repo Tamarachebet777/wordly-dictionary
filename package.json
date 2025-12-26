@@ -1,0 +1,21 @@
+{
+  "name": "wordly-dictionary",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/Tamarachebet777/wordly-dictionary#readme",
+  "bugs": {
+    "url": "https://github.com/Tamarachebet777/wordly-dictionary/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tamarachebet777/wordly-dictionary.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": []
+}
